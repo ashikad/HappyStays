@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    public List<User> getAllUser();
+    public List<User> getAllUsers();
 
     public User createUser(User user);
 

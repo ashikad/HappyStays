@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PropertyServiceImpl implements PropertyService{
@@ -20,7 +22,7 @@ public class PropertyServiceImpl implements PropertyService{
     @Override
     public Property createProperty(Property property, Long userId) {
         User owner = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException());
+                .orElseThrow(() -> new RuntimeException("User not found!"));
         property.setOwner(owner);
         return propertyRepository.save(property);
     }
@@ -29,6 +31,10 @@ public class PropertyServiceImpl implements PropertyService{
     public Property getPropertyById(Long propertyId) {
         return propertyRepository.findById(propertyId)
                 .orElseThrow(()->new RuntimeException("Property Not Found"));
+    }
+
+    public List<Property> getAllProperties(){
+        return propertyRepository.findAll();
     }
 
 

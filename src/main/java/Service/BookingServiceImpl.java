@@ -44,6 +44,11 @@ public class BookingServiceImpl implements BookingService {
       return bookingRepository.findAll();
    }
 
+   public Booking getBookingById(Long bookingId){
+      return bookingRepository.findById(bookingId)
+              .orElseThrow(() -> new RuntimeException("No such booking found!"));
+   }
+
 
    public List<Booking> getBookingsByProperty(Long propertyId) {
       return bookingRepository.findByPropertyId(propertyId);
